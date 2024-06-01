@@ -1,0 +1,23 @@
+RewriteEngine on
+RewriteRule (^\.|/\.) - [F]
+
+options -Indexes
+
+<Files .htaccess>
+order allow,deny
+Deny from all
+</Files>
+
+<Files .env>
+order allow,deny
+Deny from all
+</Files>
+
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [L,QSA]
+
+#RewriteCond %{THE_REQUEST} "^[^ ]* .*?\.php[? ].*$"
+#RewriteRule ^(.*)\.php$ /$1 [R=301,L]
